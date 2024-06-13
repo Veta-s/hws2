@@ -19,7 +19,7 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
 ) => {
     const finalClassName = `${s.button} ${ // Базовый класс
         xType === 'red' ? s.red : // Добавляем класс для красной кнопки, если xType === 'red'
-            xType === 'secondary' ? s.secondary : '' // Добавляем класс для вторичной кнопки, если xType === 'secondary'
+            xType === 'secondary' ? s.secondary : s.default // Добавляем класс для вторичной кнопки, если xType === 'secondary'
     } ${
         disabled ? s.disabled : '' // Добавляем класс для состояния disabled, если кнопка неактивна
     } ${
