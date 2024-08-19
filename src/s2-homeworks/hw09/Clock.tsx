@@ -35,12 +35,18 @@ function Clock() {
         setShow(false);
     }
 
-    const formatTime = (date: Date) => {
-        return date.toLocaleTimeString('en-GB', {hour12: false});
+    const formatTime = (date:Date) => {
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+        return `${hours}:${minutes}:${seconds}`;
     };
 
     const formatDate = (date: Date) => {
-        return date.toLocaleDateString('en-GB');
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear().toString();
+        return `${day}.${month}.${year}`;
     };
 
     const formatDay = (date: Date) => {
