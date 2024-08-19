@@ -50,11 +50,11 @@ function Clock() {
     };
 
     const formatDay = (date: Date) => {
-        return date.toLocaleDateString('en-US', {weekday: 'long'});
+        return date.toLocaleDateString('ru-Ru', {weekday: 'long'});
     };
 
     const formatMonth = (date: Date) => {
-        return date.toLocaleDateString('en-US', {month: 'long'});
+        return date.toLocaleDateString('ru-Ru', {month: 'long'});
     };
 
     const stringTime = formatTime(date) // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
