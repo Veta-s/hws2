@@ -31,9 +31,11 @@ const HW12 = () => {
         document.documentElement.dataset.theme = themeId + ''
     }, [themeId])
 
+    const themeClass = themeId === 1 ? s.light : themeId === 2 ? s.blue : s.dark
+
     return (
         <div id={'hw12'}>
-            <div id={'hw12-text'} className={s2.hwTitle}>
+            <div id={'hw12-text'} className={`${s2.hw} ${themeClass}`}>
                 Homework #12
             </div>
 
