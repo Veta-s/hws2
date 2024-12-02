@@ -1,41 +1,33 @@
-import React, {useEffect} from 'react'
+import React, { useLayoutEffect } from 'react'
 import s from './HW12.module.css'
 import s2 from '../../s1-main/App.module.css'
 import SuperSelect from '../hw07/common/c5-SuperSelect/SuperSelect'
-import {useDispatch, useSelector} from 'react-redux'
-import {changeThemeId, StateType} from './bll/themeReducer'
-
-/*
-* 1 - в файле themeReducer.ts написать нужные типы вместо any, дописать редьюсер
-* 2 - получить themeId из редакса
-* 3 - дописать тип и логику функции change
-* 4 - передать пропсы в SuperSelect
-* */
+import { useDispatch, useSelector } from 'react-redux'
+import { changeThemeId, StateType } from './bll/themeReducer'
 
 const themes = [
-    {id: 1, value: 'light'},
-    {id: 2, value: 'blue'},
-    {id: 3, value: 'dark'},
+    { id: 1, value: 'light' },
+    { id: 2, value: 'blue' },
+    { id: 3, value: 'dark' },
 ]
 
 const HW12 = () => {
-    // взять ид темы из редакса
+    // Получаем themeId из Redux
     const themeId = useSelector((state: StateType) => state.themeId)
     const dispatch = useDispatch()
 
-    const change = (id: number) => {
+    const change = (id: number) => { // Дописываем функцию
         dispatch(changeThemeId(id))
     }
 
-    useEffect(() => {
+    // Используем useLayoutEffect для мгновенного обновления стилей
+    useLayoutEffect(() => {
         document.documentElement.dataset.theme = themeId + ''
     }, [themeId])
 
-    const themeClass = themeId === 1 ? s.light : themeId === 2 ? s.blue : s.dark
-
     return (
-        <div id={'hw12'}>
-            <div id={'hw12-text'} className={`${s2.hw} ${themeClass}`}>
+        <div id={'hw12'} className={s2.hw} data-theme={themeId}>
+            <div id={'hw12-text'} className={s2.hwTitle}>
                 Homework #12
             </div>
 
@@ -43,9 +35,9 @@ const HW12 = () => {
                 <SuperSelect
                     id={'hw12-select-theme'}
                     className={s.select}
-                    options={themes}
-                    value={themeId}
-                    onChangeOption={change}
+                    options={themes} // Передаем опции
+                    value={themeId} // Передаем текущее значение
+                    onChangeOption={change} // Передаем функцию для изменения значения
                 />
             </div>
         </div>
