@@ -1,9 +1,10 @@
-import React, { useLayoutEffect } from 'react'
+import React, {useEffect} from 'react'
 import s from './HW12.module.css'
 import s2 from '../../s1-main/App.module.css'
 import SuperSelect from '../hw07/common/c5-SuperSelect/SuperSelect'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeThemeId, StateType } from './bll/themeReducer'
+import { changeThemeId} from './bll/themeReducer'
+import {AppStoreType} from "../hw10/bll/store";
 
 const themes = [
     { id: 1, value: 'light' },
@@ -13,15 +14,16 @@ const themes = [
 
 const HW12 = () => {
     // Получаем themeId из Redux
-    const themeId = useSelector((state: StateType) => state.themeId)
+    const themeId = useSelector((state: AppStoreType) => state.theme.themeId)
     const dispatch = useDispatch()
-
+    console.log(themeId)
     const change = (id: number) => { // Дописываем функцию
         dispatch(changeThemeId(id))
     }
 
+
     // Используем useLayoutEffect для мгновенного обновления стилей
-    useLayoutEffect(() => {
+    useEffect(() => {
         document.documentElement.dataset.theme = themeId + ''
     }, [themeId])
 
