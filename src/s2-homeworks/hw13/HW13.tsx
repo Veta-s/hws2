@@ -52,7 +52,7 @@ const HW13 = () => {
                         setCode('Ошибка 500!');
                         setImage(error500);
                     } else {
-                        setCode(`Ошибка ${status}!`);
+                        setCode(`Error`);
                         setImage(errorUnknown);
                     }
                     setText(e.response.data.errorText);
