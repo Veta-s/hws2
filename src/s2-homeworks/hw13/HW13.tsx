@@ -44,22 +44,25 @@ const HW13 = () => {
             .catch((e) => {
                 if (e.response) {
                     // Обработка ошибок с ответом сервера
+
                     const status = e.response.status;
+
                     if (status === 400) {
                         setCode('Ошибка 400!');
                         setImage(error400);
+                        setText(e.response.data.errorText);
+                        setInfo(e.response.data.info)
                     } else if (status === 500) {
                         setCode('Ошибка 500!');
                         setImage(error500);
+                        setText(e.response.data.errorText);
+                        setInfo(e.response.data.info)
                     } else {
-                        console.log(e.response)
                         setCode(`Error!`);
                         setImage(errorUnknown);
                         setText('Network Error')
                         setInfo('Error')
                     }
-                    setText(e.response.data.errorText);
-                    setInfo(e.response.data.info);
                 } else {
                     // Ошибка без ответа сервера (например, неправильный URL)
                     setCode('Ошибка!');
